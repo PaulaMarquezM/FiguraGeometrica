@@ -1,16 +1,26 @@
 package Figura;
 
+public abstract class FiguraGeometrica {
+   
+    public abstract float calcularArea();
 
-public interface FiguraGeometrica {
-    float Area();
+   
+    public String mayorQue(FiguraGeometrica otraFigura) {
+        String nombreEstaFigura = this.getClass().getSimpleName();
+        String nombreOtraFigura = otraFigura.getClass().getSimpleName();
 
-public static void main(String[] args) {
-    FiguraGeometrica rectangulo = new Rectangulo(5, 10);
-    FiguraGeometrica triangulo = new Triangulo(4, 7);
-    FiguraGeometrica circulo = new Circulo(3);
+        if (this.calcularArea() > otraFigura.calcularArea()) {
+            return nombreEstaFigura + " tiene un área mayor que " + nombreOtraFigura + ".";
+        } else if (this.calcularArea() < otraFigura.calcularArea()) {
+            return nombreOtraFigura + " tiene un área mayor que " + nombreEstaFigura + ".";
+        } else {
+            return nombreEstaFigura + " y " + nombreOtraFigura + " tienen el mismo área.";
+        }
+    }
 
-    System.out.println("Area del Rectangulo: " + rectangulo.Area());
-    System.out.println("Area del Triangulo: " + triangulo.Area());
-    System.out.println("Area del Circulo: " + circulo.Area());
-	}
+   
+    @Override
+    public String toString() {
+        return "Área: " + calcularArea();
+    }
 }
